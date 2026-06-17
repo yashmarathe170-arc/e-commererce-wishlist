@@ -1,20 +1,19 @@
 import React from 'react';
-import { useWishlist } from '../context/WishlistContext';
+import { useCart } from '../context/CartContext';
 import '../styles/Navbar.css';
 
 /**
  * Navbar component for the application header.
  * @param {Object} props
- * @param {string} props.currentPage - The current active page ('products' or 'wishlist')
+ * @param {string} props.currentPage - The current active page ('products', 'cart', 'checkout', 'orders')
  * @param {Function} props.setCurrentPage - Function to set/change the current page
  */
 const Navbar = ({ currentPage, setCurrentPage }) => {
-  // Destructure the wishlist array from our context to read its length
-  const { wishlist } = useWishlist();
+  const { cart } = useCart();
 
   return (
     <nav className="navbar">
-      {/* Brand logo / name */}
+      {/* Brand logo */}
       <div className="navbar-brand" onClick={() => setCurrentPage('products')}>
         MINIMA<span>.shop</span>
       </div>
@@ -29,14 +28,24 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
             Products
           </button>
         </li>
+        
         <li className="navbar-item">
           <button
-            className={`navbar-button ${currentPage === 'wishlist' ? 'active' : ''}`}
-            onClick={() => setCurrentPage('wishlist')}
+            className={`navbar-button ${currentPage === 'cart' ? 'active' : ''}`}
+            onClick={() => setCurrentPage('cart')}
           >
-            Wishlist
-            {/* Display badge with the wishlist item count */}
-            <span className="wishlist-count-badge">{wishlist.length}</span>
+            Cart
+            {/* Display badge with the cart item count */}
+            <span className="cart-count-badge">{cart.length}</span>
+          </button>
+        </li>
+
+        <li className="navbar-item">
+          <button
+            className={`navbar-button ${currentPage === 'orders' ? 'active' : ''}`}
+            onClick={() => setCurrentPage('orders')}
+          >
+            Orders
           </button>
         </li>
       </ul>

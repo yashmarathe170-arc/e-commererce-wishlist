@@ -1,9 +1,8 @@
 import React from 'react';
 import ProductCard from '../components/ProductCard';
-import '../styles/Products.css';
+import '../styles/Product.css';
 
 // A collection of mock products to show on the storefront.
-// Since the schema is only specified for Wishlist items, these products are static.
 const MOCK_PRODUCTS = [
   { id: 1, name: 'Minimalist Leather Backpack', price: 120.00 },
   { id: 2, name: 'Wireless Noise-Canceling Headphones', price: 299.00 },
@@ -16,9 +15,9 @@ const MOCK_PRODUCTS = [
 ];
 
 /**
- * Products Page listing available shop items.
+ * Product Page listing available shop items.
  */
-const Products = () => {
+const Product = () => {
   return (
     <div className="products-page">
       {/* Page Header */}
@@ -37,4 +36,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Product;

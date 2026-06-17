@@ -5,8 +5,9 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-// Import the wishlist routes
-const wishlistRoutes = require('./routes/wishlistRoutes');
+// Import routes
+const cartRoutes = require('./routes/cartRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 // Initialize the Express app
 const app = express();
@@ -22,12 +23,12 @@ app.use(cors());
 app.use(express.json());
 
 // Register API Routes
-// All requests starting with /wishlist will be handled by wishlistRoutes
-app.use('/wishlist', wishlistRoutes);
+app.use('/cart', cartRoutes);
+app.use('/orders', orderRoutes);
 
 // Simple health check route
 app.get('/', (req, res) => {
-  res.send('E-Commerce Wishlist API is running...');
+  res.send('Shopping Portal API is running...');
 });
 
 // Global Error Handler Middleware (fallback for unexpected errors)

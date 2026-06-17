@@ -49,8 +49,8 @@
   border-color: #e2e8f0;
 }
 
-/* Highlight card if already in wishlist */
-.product-card.wished {
+/* Highlight card if already in cart */
+.product-card.in-cart {
   border-color: #1a1a1a;
 }
 
@@ -72,8 +72,8 @@
   color: #1a1a1a;
 }
 
-/* Add to Wishlist Button */
-.add-wishlist-btn {
+/* Add to Cart Button */
+.add-cart-btn {
   width: 100%;
   background-color: #ffffff;
   color: #1a1a1a;
@@ -90,23 +90,23 @@
   gap: 0.5rem;
 }
 
-.add-wishlist-btn:hover {
+.add-cart-btn:hover {
   background-color: #1a1a1a;
   color: #ffffff;
 }
 
-.add-wishlist-btn:disabled {
+.add-cart-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.add-wishlist-btn.already-added {
+.add-cart-btn.already-added {
   background-color: #1a1a1a;
   color: #ffffff;
   border-color: #1a1a1a;
 }
 
-.add-wishlist-btn.already-added:hover {
+.add-cart-btn.already-added:hover {
   background-color: #333333;
   border-color: #333333;
 }
@@ -118,7 +118,7 @@
   gap: 0.5rem;
 }
 
-/* Responsive adjustements */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .products-grid {
     gap: 1.5rem;

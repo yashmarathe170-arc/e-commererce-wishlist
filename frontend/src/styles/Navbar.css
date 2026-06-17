@@ -70,8 +70,8 @@
   border-radius: 2px;
 }
 
-/* Wishlist Badge Counter */
-.wishlist-count-badge {
+/* Cart Badge Counter */
+.cart-count-badge {
   background-color: #1a1a1a;
   color: #ffffff;
   font-size: 0.75rem;
@@ -87,7 +87,7 @@
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.navbar-button:hover .wishlist-count-badge {
+.navbar-button:hover .cart-count-badge {
   transform: scale(1.1);
 }
 
