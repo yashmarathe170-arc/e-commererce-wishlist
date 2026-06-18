@@ -118,6 +118,51 @@
   gap: 0.5rem;
 }
 
+/* Product Ratings Summary line inside card */
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0.2rem 0 0.8rem 0;
+  cursor: pointer;
+  width: fit-content;
+  font-size: 0.85rem;
+  color: #475569;
+  user-select: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.product-rating:hover {
+  opacity: 0.85;
+}
+
+.product-rating .star-icon.filled {
+  color: #fbbf24;
+}
+
+.product-rating .star-icon.empty {
+  color: #cbd5e1;
+}
+
+.product-rating .rating-val {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.product-rating .rating-count {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.product-rating.no-ratings {
+  color: #94a3b8;
+}
+
+.product-rating.no-ratings:hover {
+  text-decoration: underline;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .products-grid {

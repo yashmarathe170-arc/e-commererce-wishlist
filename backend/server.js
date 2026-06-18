@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 // Import routes
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 // Initialize the Express app
 const app = express();
@@ -25,6 +26,7 @@ app.use(express.json());
 // Register API Routes
 app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
+app.use('/reviews', reviewRoutes);
 
 // Simple health check route
 app.get('/', (req, res) => {

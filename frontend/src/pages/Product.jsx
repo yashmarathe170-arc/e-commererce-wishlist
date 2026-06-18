@@ -1,5 +1,6 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
+import { fetchReviewsSummary } from '../services/reviewApi';
 import '../styles/Product.css';
 
 // A collection of mock products to show on the storefront.
@@ -18,6 +19,37 @@ const MOCK_PRODUCTS = [
  * Product Page listing available shop items.
  */
 const Product = () => {
+  // Store rating summaries mapped by product name
+  const [ratingSummaries, setRatingSummaries] = useState({});
+
+  useEffect(() => {
+    const loadSummaries = async () => {
+      try {
+        const data = await fetchReviewsSummary();
+        const summariesMap = {};
+        data.forEach((item) => {
+          summariesMap[item.productName] = {
+            averageRating: item.averageRating,
+            totalReviews: item.totalReviews
+          };
+        });
+        setRatingSummaries(summariesMap);
+      } catch (error) {
+        console.error('Failed to load reviews summaries:', error);
+      }
+    };
+
+    loadSummaries();
+  }, []);
+
+  // Callback to update a product's average rating in local state when a review changes
+  const handleRatingUpdate = (productName, averageRating, totalReviews) => {
+    setRatingSummaries((prev) => ({
+      ...prev,
+      [productName]: { averageRating, totalReviews }
+    }));
+  };
+
   return (
     <div className="products-page">
       {/* Page Header */}
@@ -28,9 +60,18 @@ const Product = () => {
 
       {/* Grid of Product Cards */}
       <main className="products-grid">
-        {MOCK_PRODUCTS.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {MOCK_PRODUCTS.map((product) => {
+          const summary = ratingSummaries[product.name] || { averageRating: 0, totalReviews: 0 };
+          return (
+            <ProductCard
+              key={product.id}
+              product={product}
+              averageRating={summary.averageRating}
+              totalReviews={summary.totalReviews}
+              onRatingUpdate={handleRatingUpdate}
+            />
+          );
+        })}
       </main>
     </div>
   );

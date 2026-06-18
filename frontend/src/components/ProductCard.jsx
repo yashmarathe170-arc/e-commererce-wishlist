@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import ReviewModal from './ReviewModal';
 
 /**
  * ProductCard component to display an individual product.
  * @param {Object} props
  * @param {Object} props.product - The product details { name, price }
+ * @param {Number} props.averageRating - Dynamic average rating
+ * @param {Number} props.totalReviews - Dynamic total reviews count
+ * @param {Function} props.onRatingUpdate - Callback when reviews change
  */
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, averageRating = 0, totalReviews = 0, onRatingUpdate }) => {
   const { addToCart, cart } = useCart();
   const [isAdding, setIsAdding] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Check if this product is already in the cart
   const isAlreadyInCart = cart.some(
@@ -16,10 +21,30 @@ const ProductCard = ({ product }) => {
   );
 
   // Click handler to add the product to cart
-  const handleAddToCart = async () => {
+  const handleAddToCart = async (e) => {
+    e.stopPropagation(); // Avoid triggering details modal if container has click
     setIsAdding(true);
     await addToCart(product.name, product.price);
     setIsAdding(false);
+  };
+
+  // Helper to render ratings line
+  const renderRatingInfo = () => {
+    if (totalReviews > 0) {
+      return (
+        <div className="product-rating" onClick={() => setIsModalOpen(true)}>
+          <span className="star-icon filled">★</span>
+          <span className="rating-val">{averageRating.toFixed(1)}</span>
+          <span className="rating-count">({totalReviews} {totalReviews === 1 ? 'review' : 'reviews'})</span>
+        </div>
+      );
+    }
+    return (
+      <div className="product-rating no-ratings" onClick={() => setIsModalOpen(true)}>
+        <span className="star-icon empty">★</span>
+        <span className="rating-count">Write a review</span>
+      </div>
+    );
   };
 
   return (
@@ -27,6 +52,7 @@ const ProductCard = ({ product }) => {
       {/* Product Information */}
       <div className="product-details">
         <h3 className="product-name">{product.name}</h3>
+        {renderRatingInfo()}
         <p className="product-price">₹{product.price.toFixed(2)}</p>
       </div>
 
@@ -44,6 +70,15 @@ const ProductCard = ({ product }) => {
           '♡ Add to Cart'
         )}
       </button>
+
+      {/* Reviews Modal Overlay */}
+      {isModalOpen && (
+        <ReviewModal
+          product={product}
+          onClose={() => setIsModalOpen(false)}
+          onRatingUpdate={onRatingUpdate}
+        />
+      )}
     </div>
   );
 };
