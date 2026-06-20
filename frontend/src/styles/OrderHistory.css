@@ -1,44 +1,48 @@
 .orders-page {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 3rem 1.5rem;
 }
 
 .orders-header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
 }
 
 .orders-header h1 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: var(--text-main);
   margin-bottom: 0.5rem;
 }
 
 .orders-header p {
-  color: #666666;
-  font-size: 1rem;
+  color: var(--text-muted);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
 }
 
 /* Orders List */
 .orders-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 /* Individual Order Card */
 .order-card {
-  background-color: #ffffff;
-  border: 1px solid #eef2f6;
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: box-shadow 0.3s ease;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-subtle);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
 .order-card:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
 }
 
 /* Header within Card: ID, Date, Status */
@@ -46,71 +50,99 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #eef2f6;
-  margin-bottom: 1rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.2rem;
 }
 
 .order-info-left h3 {
   margin: 0 0 0.4rem 0;
-  font-size: 1.05rem;
-  color: #1a1a1a;
+  font-size: 1.15rem;
+  color: var(--text-main);
   font-weight: 600;
+  font-family: monospace;
 }
 
 .order-date {
   font-size: 0.85rem;
-  color: #666666;
+  color: var(--text-muted);
   margin: 0;
 }
 
 /* Badges for status */
 .order-status-badge {
-  padding: 0.4rem 0.8rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
   border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .order-status-badge.placed {
-  background-color: #e6f6ec;
-  color: #15803d;
+  background-color: var(--accent-sage-light);
+  color: var(--accent-sage-dark);
 }
 
 .order-status-badge.cancelled {
-  background-color: #fef2f2;
-  color: #b91c1c;
+  background-color: #fdf2f2;
+  color: var(--accent-terracotta);
 }
 
 /* Items details inside Card */
 .order-card-items {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .order-card-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 0.95rem;
-  padding: 0.4rem 0;
-  color: #333333;
+  color: var(--text-main);
 }
 
 .order-item-left {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Product Thumbnail in Order List */
+.order-item-thumbnail {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.order-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
 .order-item-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--text-main);
 }
 
 .order-item-qty {
-  color: #666666;
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 .order-item-price {
   font-weight: 600;
+  color: var(--text-main);
 }
 
 /* Footer: Total and Cancel Button */
@@ -118,73 +150,76 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #eef2f6;
-  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.2rem;
 }
 
 .order-total-amount {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-main);
   margin: 0;
 }
 
 .cancel-order-btn {
-  background-color: #ffffff;
-  color: #d93838;
-  border: 1.5px solid #d93838;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  background-color: transparent;
+  color: var(--accent-terracotta);
+  border: 1.5px solid var(--accent-terracotta);
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .cancel-order-btn:hover {
-  background-color: #d93838;
-  color: #ffffff;
+  background-color: var(--accent-terracotta);
+  color: var(--bg-secondary);
 }
 
 .cancel-order-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 /* Empty State */
 .orders-empty {
   text-align: center;
-  padding: 4rem 2rem;
-  background-color: #ffffff;
-  border: 1px dashed #e2e8f0;
-  border-radius: 16px;
+  padding: 5rem 2rem;
+  background-color: var(--bg-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
   max-width: 500px;
-  margin: 2rem auto;
+  margin: 3rem auto;
+  box-shadow: var(--shadow-subtle);
 }
 
 .empty-orders-icon {
-  font-size: 3.5rem;
-  color: #cbd5e1;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  color: var(--accent-sage);
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
 }
 
 .orders-empty h2 {
-  font-size: 1.5rem;
-  color: #1a1a1a;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--text-main);
   margin-bottom: 0.5rem;
 }
 
 .orders-empty p {
-  color: #666666;
-  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
 }
 
 /* Loading layout */
 .orders-loading {
   text-align: center;
-  padding: 4rem 2rem;
-  color: #666666;
-  font-size: 1.2rem;
+  padding: 5rem 2rem;
+  color: var(--text-muted);
+  font-size: 1.15rem;
   font-weight: 500;
 }
 

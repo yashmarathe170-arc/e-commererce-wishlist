@@ -14,6 +14,7 @@ import Product from './pages/Product';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import OrderHistory from './pages/OrderHistory';
+import PaymentHistory from './pages/PaymentHistory';
 
 /**
  * Main App Component
@@ -34,6 +35,8 @@ function App() {
         return <Checkout setCurrentPage={setCurrentPage} />;
       case 'orders':
         return <OrderHistory setCurrentPage={setCurrentPage} />;
+      case 'payments':
+        return <PaymentHistory setCurrentPage={setCurrentPage} />;
       default:
         return <Product />;
     }

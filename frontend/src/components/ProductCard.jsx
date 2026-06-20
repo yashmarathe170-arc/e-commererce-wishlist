@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import ReviewModal from './ReviewModal';
+import { getProductImage } from '../utils/productImages';
 
 /**
  * ProductCard component to display an individual product.
@@ -49,9 +50,22 @@ const ProductCard = ({ product, averageRating = 0, totalReviews = 0, onRatingUpd
 
   return (
     <div className={`product-card ${isAlreadyInCart ? 'in-cart' : ''}`}>
+      {/* Product Image Container */}
+      <div className="product-image-container" onClick={() => setIsModalOpen(true)}>
+        <img
+          src={getProductImage(product.name)}
+          alt={product.name}
+          className="product-image"
+          loading="lazy"
+        />
+        <div className="image-overlay">
+          <span>View Details & Reviews</span>
+        </div>
+      </div>
+
       {/* Product Information */}
       <div className="product-details">
-        <h3 className="product-name">{product.name}</h3>
+        <h3 className="product-name" onClick={() => setIsModalOpen(true)}>{product.name}</h3>
         {renderRatingInfo()}
         <p className="product-price">₹{product.price.toFixed(2)}</p>
       </div>

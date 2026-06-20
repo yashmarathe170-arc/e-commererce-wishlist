@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 // Initialize the Express app
 const app = express();
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
 app.use('/reviews', reviewRoutes);
+app.use('/payments', paymentRoutes);
 
 // Simple health check route
 app.get('/', (req, res) => {
@@ -42,7 +44,7 @@ app.use((err, req, res, next) => {
 // Connect to MongoDB using Mongoose
 const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/wishlist-db';
 
-mongoose.connect(mongoUri)
+mongoose.connect(mongoUri, { serverSelectionTimeoutMS: 5000 })
   .then(() => {
     console.log('Successfully connected to MongoDB.');
     // Start listening for client requests only after database connection is successful

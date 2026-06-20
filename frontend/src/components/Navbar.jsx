@@ -15,7 +15,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
     <nav className="navbar">
       {/* Brand logo */}
       <div className="navbar-brand" onClick={() => setCurrentPage('products')}>
-        MINIMA<span>.shop</span>
+        Add2<span>Cart</span>
       </div>
 
       {/* Navigation links */}
@@ -46,6 +46,15 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
             onClick={() => setCurrentPage('orders')}
           >
             Orders
+          </button>
+        </li>
+
+        <li className="navbar-item">
+          <button
+            className={`navbar-button ${currentPage === 'payments' ? 'active' : ''}`}
+            onClick={() => setCurrentPage('payments')}
+          >
+            Payments
           </button>
         </li>
       </ul>

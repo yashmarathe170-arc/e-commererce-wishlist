@@ -211,12 +211,14 @@ const ReviewModal = ({ product, onClose, onRatingUpdate }) => {
       setEditingReviewId(null);
 
       // Reload reviews and update parent
+      
       const updatedData = await fetchProductReviews(product.name);
       setReviews(updatedData.reviews || []);
       setAverageRating(updatedData.averageRating || 0);
       setTotalReviews(updatedData.totalReviews || 0);
-
+       
       // Propagate to main feed
+      
       if (onRatingUpdate) {
         onRatingUpdate(product.name, updatedData.averageRating, updatedData.totalReviews);
       }
@@ -236,7 +238,7 @@ const ReviewModal = ({ product, onClose, onRatingUpdate }) => {
       return;
     }
 
-    try {
+    try { 
       await deleteReview(reviewId, MOCK_USER_ID);
       toast.success('Review deleted successfully!');
 
@@ -365,6 +367,7 @@ const ReviewModal = ({ product, onClose, onRatingUpdate }) => {
               </div>
 
               {/* Right Column: Add Review Form or Rating Breakdown */}
+                     
               <div className="review-form-section">
                 {/* Dynamic Rating Summary card */}
                 <div className="rating-summary-card">
@@ -379,6 +382,7 @@ const ReviewModal = ({ product, onClose, onRatingUpdate }) => {
                 </div>
 
                 {/* Form to submit review */}
+        
                 {!editingReviewId && (
                   userHasReviewed ? (
                     <div className="reviewed-notice">

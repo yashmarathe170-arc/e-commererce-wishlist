@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useOrders } from '../context/OrderContext';
+import { getProductImage } from '../utils/productImages';
 
 /**
  * OrderCard component to display details of a single order.
@@ -43,8 +44,16 @@ const OrderCard = ({ order }) => {
         {order.items && order.items.map((item) => (
           <div key={item._id} className="order-card-item">
             <div className="order-item-left">
-              <span className="order-item-name">{item.productName}</span>
-              <span className="order-item-qty">x {item.quantity}</span>
+              <img
+                src={getProductImage(item.productName)}
+                alt={item.productName}
+                className="order-item-thumbnail"
+                loading="lazy"
+              />
+              <div className="order-item-details">
+                <span className="order-item-name">{item.productName}</span>
+                <span className="order-item-qty">x {item.quantity}</span>
+              </div>
             </div>
             <span className="order-item-price">₹{(item.price * item.quantity).toFixed(2)}</span>
           </div>

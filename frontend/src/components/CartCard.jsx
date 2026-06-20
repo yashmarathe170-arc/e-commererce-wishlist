@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import { getProductImage } from '../utils/productImages';
 
 /**
  * CartCard component to display an item currently in the cart.
@@ -18,6 +19,14 @@ const CartCard = ({ item }) => {
 
   return (
     <div className="cart-card">
+      <div className="cart-image-container">
+        <img
+          src={getProductImage(item.productName)}
+          alt={item.productName}
+          className="cart-image"
+          loading="lazy"
+        />
+      </div>
       <div className="cart-details">
         {/* Product Name */}
         <h3 className="cart-name">{item.productName}</h3>
